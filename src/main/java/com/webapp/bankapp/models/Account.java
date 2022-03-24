@@ -3,6 +3,7 @@ package com.webapp.bankapp.models;
 import lombok.*;
 
 import javax.persistence.*;
+import java.math.BigInteger;
 
 @Entity
 @Table(name = "bank.accounts")
@@ -16,6 +17,10 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, name = "id")
     private Integer id;
+
+    @Column(nullable = false, name = "balance")
+    @NonNull
+    private BigInteger balance;
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "type")
