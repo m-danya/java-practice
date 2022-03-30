@@ -143,7 +143,8 @@ INSERT INTO branches (name, address)
     VALUES
         ('Головной офис', 'г. Москва, бул. Цветной, д. 18'),
         ('Дополнительный офис «Красные Ворота»', 'г. Москва, ул. Садовая-Черногрязская, д. 3 Б, стр. 1'),
-        ('Павелецкое отделение', 'г. Москва, ул. Валовая, д. 2—4/44, стр. 1');
+        ('Павелецкое отделение', 'г. Москва, ул. Валовая, д. 2—4/44, стр. 1'),
+        ('Пустое отделение', 'г. Москва, ???');
 
 INSERT INTO clients (type, name, surname, middle_name, address, phone_number, email, date_of_birth)
     VALUES
@@ -193,34 +194,35 @@ INSERT INTO account_types(name, credit_limit, credit_interval, interest_yield_pe
         ('Счет кредитной карты: большой лимит', 500000, 6, NULL, NULL);
 
 INSERT INTO accounts(balance, type, branch_id, client_id, interest_yield_receiver, is_active)
-    VALUES
-        (-86527, 4, 1, 6, NULL, true),
-        (194763, 1, 3, 8, NULL, true),
-        (-119273, 4, 3, 4, NULL, true),
-        (-4824, 3, 3, 4, NULL, true),
-        (397808, 1, 2, 4, NULL, true),
-        (0, 3, 2, 2, NULL, true),
-        (67941, 1, 2, 11, NULL, true),
-        (320082, 2, 1, 6, NULL, true),
-        (-5559, 3, 3, 4, NULL, true),
-        (-1090, 3, 2, 12, NULL, true),
-        (0, 3, 3, 3, NULL, true),
-        (475389, 1, 3, 8, NULL, true),
-        (111158, 2, 1, 10, NULL, true),
-        (-173068, 4, 2, 7, NULL, true),
-        (372974, 1, 1, 8, NULL, true);
+VALUES
+    (-86527, 4, 1, 6, NULL, true),
+    (194763, 1, 3, 8, NULL, true),
+    (-119273, 4, 3, 4, NULL, true),
+    (-4824, 3, 3, 4, NULL, true),
+    (397808, 1, 2, 4, NULL, true),
+    (0, 3, 2, 2, NULL, true),
+    (67941, 1, 2, 11, NULL, true),
+    (320082, 2, 1, 6, NULL, true),
+    (-5559, 3, 3, 4, NULL, true),
+    (-1090, 3, 2, 12, NULL, true),
+    (0, 3, 3, 3, NULL, true),
+    (475389, 1, 3, 8, NULL, true),
+    (111158, 2, 1, 10, NULL, true),
+    (-173068, 4, 2, 7, NULL, true),
+    (372974, 1, 1, 8, NULL, true),
+    (0, 1, 2, 7, NULL, true);
 
 INSERT INTO credits(amount, account_id, is_active, timestamp)
-    VALUES
-        (86527, 1, true, '2021-06-20 22:13:45'),
-        (41334, 3, false, '2021-02-08 05:07:13'),
-        (4421, 1, false, '2021-08-06 04:42:35'),
-        (119273, 3, true, '2021-02-21 10:04:12'),
-        (4824, 4, true, '2022-02-08 23:46:25'),
-        (34412, 4, false, '2021-06-28 16:50:44'),
-        (5559, 9, true, '2021-10-20 05:07:22'),
-        (1090, 10, true, '2021-06-15 13:11:02'),
-        (173068, 14, true, '2022-01-20 07:01:59');
+VALUES
+    (86527, 1, true, '2021-06-20 22:13:45'),
+    (41334, 3, false, '2021-02-08 05:07:13'),
+    (4421, 1, false, '2021-08-06 04:42:35'),
+    (119273, 3, true, '2021-02-21 10:04:12'),
+    (4824, 4, true, '2022-02-08 23:46:25'),
+    (34412, 4, false, '2021-06-28 16:50:44'),
+    (5559, 9, true, '2021-10-20 05:07:22'),
+    (1090, 10, true, '2021-06-15 13:11:02'),
+    (173068, 14, true, '2022-01-20 07:01:59');
 
 INSERT INTO operations(amount, account_id, timestamp)
     VALUES

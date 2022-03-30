@@ -9,7 +9,9 @@ import com.webapp.bankapp.dao.implementations.AccountDAOImplementation;
 import com.webapp.bankapp.dao.implementations.BranchDAOImplementation;
 import com.webapp.bankapp.dao.implementations.ClientDAOImplementation;
 import com.webapp.bankapp.dao.implementations.OperationDAOImplementation;
+import org.springframework.stereotype.Component;
 
+@Component("DAOFactory")
 public class DAOFactory {
     private static ClientDAO clientDAO = null;
     private static BranchDAO branchDAO = null;
