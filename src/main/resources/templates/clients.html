@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <div th:replace="common-things :: bootstrap-head"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Clients</title>
+</head>
+<body>
+<div th:replace="common-things :: menu('clients')"/>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">id</th>
+        <th scope="col">Тип клиента</th>
+        <th scope="col">Имя или название</th>
+        <th scope="col">Отчество</th>
+        <th scope="col">Фамилия</th>
+        <th scope="col">Адрес</th>
+        <th scope="col">Телефон</th>
+        <th scope="col">E-mail</th>
+        <th scope="col">Дата рождения</th>
+        <th scope="col">Счета</th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="client : ${clients}" th:object="${client}">
+        <td th:text="*{getId()}"></td>
+        <td th:text="*{getType()}"></td>
+        <td th:text="*{getName()}"></td>
+        <td th:text="*{getMiddle_name()}"></td>
+        <td th:text="*{getSurname()}"></td>
+        <td th:text="*{getAddress()}"></td>
+        <td th:text="*{getPhone_number()}"></td>
+        <td th:text="*{getEmail()}"></td>
+        <td th:text="*{getDate_of_birth()}"></td>
+        <td>
+            <button type="button" class="btn btn-info">
+                Счета
+            </button>
+        </td>
+        <td>
+            <form method="get" action="/viewClient">
+                <input type="hidden" name="id" th:value="*{getId()}"/>
+                <button type="submit" class="btn btn-secondary">Редактировать</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+<div th:replace="common-things :: bootstrap-body"/>
+</body>
+</html>

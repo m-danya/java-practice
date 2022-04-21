@@ -18,6 +18,10 @@ dependencies {
 	implementation 'org.projectlombok:lombok'
 	implementation 'org.hibernate:hibernate-core'
 	implementation 'org.postgresql:postgresql'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.thymeleaf:thymeleaf'
+	implementation 'org.thymeleaf:thymeleaf-spring5'
+	implementation 'org.seleniumhq.selenium:selenium-java'
 
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'org.postgresql:postgresql'
@@ -28,6 +32,8 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.hibernate:hibernate-core'
 	testImplementation 'org.postgresql:postgresql'
+
+
 }
 
 tasks.named('test') {
