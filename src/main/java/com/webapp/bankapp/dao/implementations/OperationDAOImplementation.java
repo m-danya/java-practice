@@ -62,7 +62,7 @@ public class OperationDAOImplementation implements OperationDAO {
         Operation result;
         try {
             result = query.getSingleResult();
-        } catch(NoResultException e) {
+        } catch (NoResultException e) {
             result = null;
         }
         session.close();
@@ -73,8 +73,8 @@ public class OperationDAOImplementation implements OperationDAO {
     public List<Operation> getByAccount(Account account) {
         Session session = HibernateUtility.getSessionFactory().openSession();
         Query query = session.createQuery("from Operation as operation" +
-                        " inner join operation.account as account" +
-                        " where account = :account"
+                " inner join operation.account as account" +
+                " where account = :account"
         );
         query.setParameter("account", account);
         List<Object[]> result = query.list();
@@ -83,7 +83,7 @@ public class OperationDAOImplementation implements OperationDAO {
             session.close();
             return operations;
         }
-        for(Object[] row : result) {
+        for (Object[] row : result) {
             operations.add((Operation) row[0]);
         }
         session.close();

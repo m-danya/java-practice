@@ -61,7 +61,7 @@ public class BranchDAOImplementation implements BranchDAO {
         Branch result;
         try {
             result = query.getSingleResult();
-        } catch(NoResultException e) {
+        } catch (NoResultException e) {
             result = null;
         }
         session.close();

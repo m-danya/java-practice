@@ -3,14 +3,14 @@
 <head>
     <div th:replace="common-things :: bootstrap-head"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Клиенты</title>
+    <title>Счета</title>
 </head>
 <body>
-<div th:replace="common-things :: menu('clients')"/>
+<div th:replace="common-things :: menu('accounts')"/>
 
 <div class="row">
     <div class="col-sm">
-        <form method="get" action="/clients">
+        <form method="get" action="/accounts">
             <div class="form-group container" style="max-width: 400px;">
                 <h5 class="mb-3 mt-3">По типам счетов</h5>
                 <input type="hidden" name="filter_by" th:value="types"/>
@@ -45,7 +45,7 @@
     </div>
     <div class="col-sm">
 
-        <form method="get" action="/clients">
+        <form method="get" action="/accounts">
             <div class="form-group container" style="max-width: 400px;">
                 <h5 class="mb-3 mt-3">По наличию операций в определённом промежутке времени</h5>
                 <input type="hidden" name="filter_by" th:value="operations_range"/>
@@ -64,9 +64,9 @@
     </div>
     <div class="col-sm">
 
-        <form method="get" action="/clients">
+        <form method="get" action="/accounts">
             <div class="form-group container" style="max-width: 400px;">
-                <h5 class="mb-3 mt-3">По суммарному балансу</h5>
+                <h5 class="mb-3 mt-3">По текщему балансу</h5>
                 <input type="hidden" name="filter_by" th:value="sum_range"/>
                 <div class="form-group">
                     <label>От</label>
@@ -82,7 +82,7 @@
         </form>
     </div>
     <div class="col-sm">
-        <form method="get" action="/clients">
+        <form method="get" action="/accounts">
             <div class="form-group container" style="max-width: 400px;">
                 <h5 class="mb-3 mt-3">Поиск по подстроке</h5>
                 <input type="hidden" name="filter_by" th:value="str"/>
@@ -99,10 +99,10 @@
 </div>
 
 
-<form method="get" action="/addClient">
+<form method="get" action="/addAccount">
     <div class="form-group text-center">
         <div class="form-group">
-            <button type="submit" class="btn btn-success">Добавить клиента</button>
+            <button type="submit" class="btn btn-success">Добавить счет</button>
         </div>
     </div>
 </form>
@@ -111,40 +111,39 @@
     <thead>
     <tr>
         <th scope="col">id</th>
-        <th scope="col">Тип клиента</th>
-        <th scope="col">Имя или название</th>
-        <th scope="col">Отчество</th>
-        <th scope="col">Фамилия</th>
-        <th scope="col">Адрес</th>
-        <th scope="col">Телефон</th>
-        <th scope="col">E-mail</th>
-        <th scope="col">Дата рождения</th>
-        <th scope="col">Счета</th>
+        <th scope="col">Баланс</th>
+        <th scope="col">Тип</th>
+        <th scope="col">Отделение</th>
+        <th scope="col">Клиент</th>
+        <th scope="col">Номер счёта, на который начисляется процент</th>
+        <th scope="col">Активность</th>
         <th scope="col"></th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="client : ${clients}" th:object="${client}">
+    <tr th:each="account : ${accounts}" th:object="${account}">
         <td th:text="*{getId()}"></td>
-        <td th:text="*{getType()}"></td>
-        <td th:text="*{getName()}"></td>
-        <td th:text="*{getMiddle_name()}"></td>
-        <td th:text="*{getSurname()}"></td>
-        <td th:text="*{getAddress()}"></td>
-        <td th:text="*{getPhone_number()}"></td>
-        <td th:text="*{getEmail()}"></td>
-        <td th:text="*{getDate_of_birth()}"></td>
+        <td th:text="*{getBalance()}"></td>
+        <td th:text="*{getType().getName()}"></td>
         <td>
-            <form method="get" action="/accounts">
-                <input type="hidden" name="filter_by" th:value="client"/>
-                <input type="hidden" name="client_id" th:value="*{getId()}"/>
-                <button type="submit" class="btn btn-info">Счета</button>
+            <form method="get" action="/viewBranch">
+                <input type="hidden" name="id" th:value="*{getBranch().getId()}"/>
+                <button type="submit" class="btn btn-secondary">Отделение</button>
             </form>
         </td>
         <td>
             <form method="get" action="/viewClient">
+                <input type="hidden" name="id" th:value="*{getClient().getId()}"/>
+                <button type="submit" class="btn btn-secondary">Клиент</button>
+            </form>
+        </td>
+        <td th:text="*{getInterest_yield_receiver()}"></td>
+        <td th:text="*{getIs_active()}"></td>
+
+        <td>
+            <form method="get" action="/viewAccount">
                 <input type="hidden" name="id" th:value="*{getId()}"/>
-                <button type="submit" class="btn btn-secondary">Редактировать</button>
+                <button type="submit" class="btn btn-secondary">Открыть</button>
             </form>
         </td>
     </tr>

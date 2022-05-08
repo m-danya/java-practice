@@ -8,10 +8,13 @@ import java.util.List;
 
 public interface OperationDAO {
     void add(Operation operation);
+
     void update(Operation operation);
+
     void remove(Operation operation);
 
     List<Operation> getAll();
+
     Operation getById(Integer id);
 
     List<Operation> getByAccount(Account account);

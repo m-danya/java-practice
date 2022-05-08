@@ -6,27 +6,28 @@
     <title th:text="${client.getName()}"></title>
 </head>
 <body>
-<div th:replace="common-things :: menu('clients')" />
-
+<div th:replace="common-things :: menu('clients')"/>
 
 
 <div class="container mt-3" style="max-width: 400px;">
     <div style="display: flex; ">
         <div class="">
-            <button type="button" class="btn btn-info">
-                Счета
-            </button>
+            <form method="get" action="/accounts">
+                <input type="hidden" name="filter_by" th:value="client"/>
+                <input type="hidden" name="client_id" th:value="${client.getId()}"/>
+                <button type="submit" class="btn btn-info">Счета</button>
+            </form>
         </div>
         <div class="">
             <form method="post" action="/deleteClient" th:object="${client}" class="ml-2">
                 <input type="hidden" name="id" th:value="*{getId()}">
                 <button type="submit" class="btn btn-danger">
-                    Удалить клиента
+                    Удалить
                 </button>
             </form>
         </div>
     </div>
-    <br />
+    <br/>
     <form method="post" action="/updateClient" th:object="${client}">
         <input type="hidden" name="id" th:value="*{getId()}">
 
@@ -44,7 +45,7 @@
         </div>
         <div class="form-group">
             <label>Фамилия</label>
-            <input class="form-control"name="surname"  th:value="*{getSurname()}">
+            <input class="form-control" name="surname" th:value="*{getSurname()}">
         </div>
         <div class="form-group">
             <label>Адрес</label>

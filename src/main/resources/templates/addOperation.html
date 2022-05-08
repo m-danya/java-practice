@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <div th:replace="common-things :: bootstrap-head"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Добавить операцию</title>
+</head>
+<body>
+<div th:replace="common-things :: menu('operations')"/>
+
+
+<div class="container mt-3" style="max-width: 400px;">
+    <form method="post" action="/saveOperation">
+        <div class="form-group">
+            <label>Сумма</label>
+            <input class="form-control" name="amount">
+        </div>
+        <input type="hidden" name="account" th:value="${account_id}">
+        <div class="form-group">
+            <label>Время</label>
+            <input class="form-control" name="timestamp">
+        </div>
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+    </form>
+
+</div>
+
+<div th:replace="common-things :: bootstrap-body"/>
+</body>
+</html>

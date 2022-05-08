@@ -24,13 +24,14 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link" th:classappend="${name == 'index' ? 'active' : ''}" href="#">Главная</a>
+                <a class="nav-item nav-link" th:classappend="${name == 'index' ? 'active' : ''}" href="/">Главная</a>
 
-                <a class="nav-item nav-link" th:classappend="${name == 'accounts' ? 'active' : ''}" href="#">Счета</a>
-
-                <a class="nav-item nav-link" th:classappend="${name == 'branches' ? 'active' : ''}" href="#">Отделения</a>
+                <a class="nav-item nav-link" th:classappend="${name == 'branches' ? 'active' : ''}"
+                   href="/branches">Отделения</a>
 
                 <a class="nav-item nav-link" th:classappend="${name == 'clients' ? 'active' : ''}" href="/clients">Клиенты</a>
+
+                <a class="nav-item nav-link" th:classappend="${name == 'accounts' ? 'active' : ''}" href="/accounts">Счета</a>
 
             </div>
         </div>

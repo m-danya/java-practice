@@ -58,8 +58,8 @@ public class AccountDAOImplementation implements AccountDAO {
     public List<Account> getByType(Integer type) {
         Session session = HibernateUtility.getSessionFactory().openSession();
         Query query = session.createQuery
-                ("from Account as account inner join account.type as type " +
-                        " where type.id = :type_param")
+                        ("from Account as account inner join account.type as type " +
+                                " where type.id = :type_param")
                 .setParameter("type_param", type);
         List<Object[]> result = query.list();
         List<Account> accounts = new ArrayList<Account>();
@@ -67,7 +67,7 @@ public class AccountDAOImplementation implements AccountDAO {
             session.close();
             return accounts;
         }
-        for(Object[] row : result) {
+        for (Object[] row : result) {
             accounts.add((Account) row[0]);
         }
         session.close();
@@ -78,7 +78,7 @@ public class AccountDAOImplementation implements AccountDAO {
     public List<Account> getByBalanceRange(BigInteger from, BigInteger to) {
         Session session = HibernateUtility.getSessionFactory().openSession();
         Query<Account> query = session.createQuery
-                ("from Account where balance >= :param_a and balance <= :param_b", Account.class)
+                        ("from Account where balance >= :param_a and balance <= :param_b", Account.class)
                 .setParameter("param_a", from).setParameter("param_b", to);
         List<Account> result = query.getResultList();
         session.close();
@@ -100,7 +100,7 @@ public class AccountDAOImplementation implements AccountDAO {
             session.close();
             return accounts;
         }
-        for(Object[] row : result) {
+        for (Object[] row : result) {
             accounts.add((Account) row[0]);
         }
         session.close();
@@ -122,7 +122,7 @@ public class AccountDAOImplementation implements AccountDAO {
             session.close();
             return accounts;
         }
-        for(Object[] row : result) {
+        for (Object[] row : result) {
             accounts.add((Account) row[0]);
         }
         session.close();
@@ -145,7 +145,7 @@ public class AccountDAOImplementation implements AccountDAO {
             session.close();
             return accounts;
         }
-        for(Object[] row : result) {
+        for (Object[] row : result) {
             accounts.add((Account) row[1]);
         }
         session.close();
@@ -175,7 +175,23 @@ public class AccountDAOImplementation implements AccountDAO {
         Account result;
         try {
             result = query.getSingleResult();
-        } catch(NoResultException e) {
+        } catch (NoResultException e) {
+            result = null;
+        }
+        session.close();
+        return result;
+    }
+
+    @Override
+    public AccountType getAccountType(Integer type) {
+        Session session = HibernateUtility.getSessionFactory().openSession();
+        Query<AccountType> query = session.createQuery
+                ("from AccountType as type where type.id = :type");
+        query.setParameter("type", type);
+        AccountType result;
+        try {
+            result = query.getSingleResult();
+        } catch (NoResultException e) {
             result = null;
         }
         session.close();

@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <div th:replace="common-things :: bootstrap-head"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Ошибка</title>
+</head>
+<body>
+<div th:replace="common-things :: menu('index')"/>
+
+<div class="container mt-5">
+    <h3>Формат данных некорректен. Попробуйте ещё раз</h3>
+</div>
+
+<div th:replace="common-things :: bootstrap-body"/>
+</body>
+</html>

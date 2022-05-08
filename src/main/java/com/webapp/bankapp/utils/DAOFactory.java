@@ -20,33 +20,35 @@ public class DAOFactory {
 
     private static DAOFactory instance = null;
 
-    public static synchronized DAOFactory getInstance(){
+    public static synchronized DAOFactory getInstance() {
         if (instance == null) {
             instance = new DAOFactory();
         }
         return instance;
     }
 
-    public ClientDAO getClientDAO(){
+    public ClientDAO getClientDAO() {
         if (clientDAO == null) {
             clientDAO = new ClientDAOImplementation();
         }
         return clientDAO;
     }
-    public BranchDAO getBranchDAO(){
+
+    public BranchDAO getBranchDAO() {
         if (branchDAO == null) {
             branchDAO = new BranchDAOImplementation();
         }
         return branchDAO;
     }
 
-    public OperationDAO getOperationDAO(){
+    public OperationDAO getOperationDAO() {
         if (operationDAO == null) {
             operationDAO = new OperationDAOImplementation();
         }
         return operationDAO;
     }
-    public AccountDAO getAccountDAO(){
+
+    public AccountDAO getAccountDAO() {
         if (accountDAO == null) {
             accountDAO = new AccountDAOImplementation();
         }

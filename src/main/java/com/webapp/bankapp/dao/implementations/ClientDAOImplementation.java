@@ -43,6 +43,7 @@ public class ClientDAOImplementation implements ClientDAO {
         session.getTransaction().commit();
         session.close();
     }
+
     @Override
     public Client getById(Integer id) {
         Session session = HibernateUtility.getSessionFactory().openSession();
@@ -52,7 +53,7 @@ public class ClientDAOImplementation implements ClientDAO {
         Client result;
         try {
             result = query.getSingleResult();
-        } catch(NoResultException e) {
+        } catch (NoResultException e) {
             result = null;
         }
         session.close();
@@ -63,7 +64,7 @@ public class ClientDAOImplementation implements ClientDAO {
     public List<Client> getAll() {
         Session session = HibernateUtility.getSessionFactory().openSession();
         Query<Client> query = session.createQuery
-                        ("from Client", Client.class);
+                ("from Client", Client.class);
         List<Client> result = query.getResultList();
         session.close();
         return result;
@@ -82,7 +83,7 @@ public class ClientDAOImplementation implements ClientDAO {
             session.close();
             return clients;
         }
-        for(Object[] row : result) {
+        for (Object[] row : result) {
             clients.add((Client) row[1]);
         }
         session.close();
@@ -104,12 +105,15 @@ public class ClientDAOImplementation implements ClientDAO {
             session.close();
             return clients;
         }
-        for(Object[] row : result) {
-            clients.add((Client) row[2]);
+        for (Object[] row : result) {
+            if (!clients.contains((Client) row[2])) {
+                clients.add((Client) row[2]);
+            }
         }
         session.close();
         return clients;
     }
+
     @Override
     public List<Client> getByTotalBalanceRange(BigInteger from, BigInteger to) {
         Session session = HibernateUtility.getSessionFactory().openSession();
@@ -127,7 +131,7 @@ public class ClientDAOImplementation implements ClientDAO {
             session.close();
             return clients;
         }
-        for(Integer row : result) {
+        for (Integer row : result) {
             clients.add(this.getById(row));
         }
         session.close();
@@ -168,7 +172,7 @@ public class ClientDAOImplementation implements ClientDAO {
             session.close();
             return clients;
         }
-        for(Object[] row : result) {
+        for (Object[] row : result) {
             clients.add((Client) row[2]);
         }
         session.close();

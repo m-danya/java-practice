@@ -1,4 +1,5 @@
 package com.webapp.bankapp.dao;
+
 import com.webapp.bankapp.models.Branch;
 import com.webapp.bankapp.models.Client;
 import com.webapp.bankapp.utils.DAOFactory;
@@ -27,7 +28,7 @@ public class AccountDAOTest {
     @Test
     public void testGetAll() {
         List<Account> list;
-        list =  DAOFactory.getInstance().getAccountDAO().getAll();
+        list = DAOFactory.getInstance().getAccountDAO().getAll();
         assertNotNull(list);
         assertEquals(list.size(), 16);
     }

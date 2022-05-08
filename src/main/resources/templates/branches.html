@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <div th:replace="common-things :: bootstrap-head"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Отделения</title>
+</head>
+<body>
+<div th:replace="common-things :: menu('branches')"/>
+
+<div class="row">
+    <div class="col-sm">
+        <form method="get" action="/branches">
+            <div class="form-group container" style="max-width: 400px;">
+                <h5 class="mb-3 mt-3">Поиск по подстроке</h5>
+                <input type="hidden" name="filter_by" th:value="str"/>
+                <div class="form-group">
+                    <label>Строка</label>
+                    <input class="form-control" name="str">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Отфильтровать</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
+<form method="get" action="/addBranch">
+    <div class="form-group text-center">
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">Добавить отделение</button>
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">id</th>
+        <th scope="col">Название</th>
+        <th scope="col">Адрес</th>
+        <th scope="col">Клиенты</th>
+        <th scope="col">Счета</th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="branch : ${branches}" th:object="${branch}">
+        <td th:text="*{getId()}"></td>
+        <td th:text="*{getName()}"></td>
+        <td th:text="*{getAddress()}"></td>
+        <td>
+            <form method="get" action="/clients">
+                <input type="hidden" name="filter_by" th:value="branch_id"/>
+                <input type="hidden" name="branch_id" th:value="${branch.getId()}"/>
+                <button type="submit" class="btn btn-info">Клиенты</button>
+            </form>
+        </td>
+        <td>
+            <form method="get" action="/accounts">
+                <input type="hidden" name="filter_by" th:value="branch_id"/>
+                <input type="hidden" name="branch_id" th:value="${branch.getId()}"/>
+                <button type="submit" class="btn btn-info">Счета</button>
+            </form>
+        </td>
+        <td>
+            <form method="get" action="/viewBranch">
+                <input type="hidden" name="id" th:value="*{getId()}"/>
+                <button type="submit" class="btn btn-secondary">Редактировать</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+<div th:replace="common-things :: bootstrap-body"/>
+</body>
+</html>

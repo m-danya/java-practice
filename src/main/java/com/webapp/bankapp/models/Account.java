@@ -1,6 +1,7 @@
 package com.webapp.bankapp.models;
 
 import lombok.*;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.math.BigInteger;
@@ -11,9 +12,11 @@ import java.math.BigInteger;
 @Setter
 @ToString
 @AllArgsConstructor
+@RequiredArgsConstructor
 @NoArgsConstructor
 public class Account {
     @Id
+    @Nullable
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, name = "id")
     private Integer id;
@@ -40,11 +43,13 @@ public class Account {
     @NonNull
     private Client client;
 
+    @NonNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "interest_yield_receiver")
     @ToString.Exclude
     private Account interest_yield_receiver;
 
+    @NonNull
     @Column(nullable = false, name = "is_active")
     private Boolean is_active;
 }
